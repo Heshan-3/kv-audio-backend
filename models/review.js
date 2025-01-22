@@ -1,47 +1,44 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
-
+const reviewShema = new mongoose.Schema({
     email : {
         type : String,
         required : true,
         unique : true
     },
-    password : {
+
+    name : {
         type : String,
         required : true
     },
-    role : {
+
+    rating : {
         type : String,
+        required : true
+    },
+
+    Comment : {
+        type : String,
+        required : true
+    },
+
+    date : {
+        type : Date,
         required : true,
-        default : "customer"
+        default : Date.now()
     },
-    firstName : {
-        type : String,
-        required : true
-    },
-    lastName : {
-        type : String,
-        required : true
-    },
-    address : {
-        type : String,
-        required : true
-    },
-    phone : {
-        type : String,
-        required : true
+    isApproved : {
+        type : Boolean,
+        required : true,
+        default : false
     },
     profilePicture : {
         type : String,
         required : true,
         default : "C:\Users\Heshan Kawithra\OneDrive\Desktop\Web Development Course\day 1\pic.webp"
     }
-});
+})
 
-const User = mongoose.model("User",userSchema);
+const Review = mongoose.model("Review", reviewShema);
 
-export default User;
-
-//secureAdminPassword123
-//adminnn@example.com
+export default Review;

@@ -5,7 +5,6 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-
 export function registerUser(req, res){
     const data = req.body;
 
@@ -40,7 +39,8 @@ export function loginUser(req, res) {
             firstName : user.firstName,
             lastName : user.lastName,
             email : user.email,
-            role : user.role
+            role : user.role,
+            profilePicture : user.profilePicture 
           },process.env.SECRET_KEY);
           
           res.json({ message: "Login successful",token : token });
@@ -52,4 +52,5 @@ export function loginUser(req, res) {
     });
   }
 
-  //customer18@example.com
+  //johndoe1@example.com
+  
