@@ -3,8 +3,6 @@ import { isitAdmin } from "./userController.js";
 
 export function addProduct(req,res){
 
-    console.log(req.user)
-
     if(req.user == null){
       res.status(401).json({
         message : "Please login and try again"
@@ -49,7 +47,7 @@ export async function getProducts(req, res) {
   }
 }
 
-export async function uodateProduct(req, res){
+export async function updateProduct(req, res){
   try {
     if(isitAdmin(req)){
 
@@ -99,6 +97,25 @@ export async function deleteProduct(req, res){
   } catch (e) {
     res.status(500).json({
       message : "Failed to delete product"
+    })
+  }
+}
+
+export async function getProduct(req, res) {
+  try{
+    const key = req.params.key
+    const product = await Product.findOne({key:key})
+    if(product == null){
+      res.status(404).json({
+        message: "Product not found"
+      })
+      return
+    }
+    res.json(product)
+    return
+  }catch(e){
+    res.status(500).json({
+      message: "Failed to get product"
     })
   }
 }

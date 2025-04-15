@@ -43,7 +43,16 @@ export function loginUser(req, res) {
             profilePicture : user.profilePicture 
           },process.env.SECRET_KEY);
           
-          res.json({ message: "Login successful",token : token });
+          res.json({ 
+            message: "Login successful",
+            token : token,
+            user: {
+              firstName: user.firstName,
+              lastName: user.lastName,
+              role: user.role,
+              email: user.email
+            } 
+          });
 
         } else {
           res.status(401).json({ error: "Login failed" });
@@ -73,6 +82,29 @@ export function isItCustomer(req){
   }
 
   return isCustomer
+}
+
+export function getUser(req, res){
+  if(req.user != null){
+    res.json(req.user)
+  }else{
+    res.status(403).json({error: "Unauthorized"})
+  }
+}
+
+export async function getAllUsers(req, res){
+  if(isitAdmin(req)){
+    try{
+      const users = await User.find()
+      res.json(users)
+    }catch(e){
+      res.status(500).json({error: "Failed to get users"})
+    }
+  }else{
+    res.status(403).json({
+      error: "Unauthorized"
+    })
+  }
 }
 
   //johndoe1@example.com

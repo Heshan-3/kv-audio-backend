@@ -1,5 +1,5 @@
 import Inquiry from "../models/inquiry.js";
-import { isItAdmin, isItCustomer } from "./userController.js"
+import { isitAdmin, isItCustomer } from "./userController.js"
 
 export async function addInquiry(req, res) {
   try{
@@ -45,7 +45,7 @@ export async function getInquiries(req,res){
       const inquiries = await Inquiry.find({email:req.user.email});
       res.json(inquiries);
       return;
-    }else if(isItAdmin(req)){
+    }else if(isitAdmin(req)){
       const inquiries = await Inquiry.find();
       res.json(inquiries);
       return;

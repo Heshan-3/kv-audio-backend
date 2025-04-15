@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 const productSchema = new mongoose.Schema({
     key : {
         type : String,
-        required : true
+        required : true,
+        unique: true
     },
     name : {
         type : String,
@@ -31,6 +32,11 @@ const productSchema = new mongoose.Schema({
         required : true,
         default : true
     },
+    image:{
+        type : [String],
+        required : true,
+        default : ["https://www.shutterstock.com/image-vector/user-profile-icon-vector-avatar-600nw-2247726673.jpg"]
+    }
 })
 
 const Product = mongoose.model("Product", productSchema)
