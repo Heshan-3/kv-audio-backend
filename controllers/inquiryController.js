@@ -65,7 +65,7 @@ export async function getInquiries(req,res){
 
 export async function deleteInquiry(req,res){
   try{
-    if(isItAdmin(req)){
+    if(isitAdmin(req)){
       const id = req.params.id;
 
       await Inquiry.deleteOne({id:id})
@@ -114,7 +114,7 @@ export async function updateInquiry(req,res){
 
   try{
 
-    if(isItAdmin(req)){
+    if(isitAdmin(req)){
       const id = req.params.id;
       const data = req.body;
 

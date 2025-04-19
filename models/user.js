@@ -36,6 +36,11 @@ const userSchema = new mongoose.Schema({
         type : String,
         required : true,
         default : "C:\Users\Heshan Kawithra\OneDrive\Desktop\Web Development Course\day 1\pic.webp"
+    },
+    emailVerified : {
+        type : Boolean,
+        required : true,
+        default : false
     }
 });
 
