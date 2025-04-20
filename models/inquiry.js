@@ -22,7 +22,6 @@ const inquirySchema = new mongoose.Schema({
     date:{
         type : Date,
         required : true,
-        default : Date.now()
     },
     response:{
         type : String,
